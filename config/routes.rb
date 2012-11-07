@@ -9,6 +9,8 @@ Fakebook::Application.routes.draw do
 
   get 'rota' => 'minha_primeira_rota#rotear'
 
+  get 'praticando' => 'treinando_rotas#metodo'
+
   root to: 'home#index'
 
   get "home/index"
