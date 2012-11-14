@@ -1,4 +1,6 @@
 Fakebook::Application.routes.draw do
+  devise_for :users
+
   resources :posts, except: [:edit, :update] do
     resources :comments, only: [:create, :destroy]
   end

@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /posts
-  # GET /posts.json
-  def index
+    def index
     @posts = Post.order('created_at DESC').all
   end
 
   # GET /posts/1
-  # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
@@ -14,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/new
-  # GET /posts/new.json
   def new
     @post = Post.new
   end
