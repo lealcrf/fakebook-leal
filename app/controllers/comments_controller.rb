@@ -1,35 +1,19 @@
 class CommentsController < ApplicationController
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all
+  before_filter :get_post
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @comments }
-    end
+  # GET /comments
+  def index
+    @comments = @post.comments
   end
 
   # GET /comments/1
-  # GET /comments/1.json
   def show
     @comment = Comment.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @comment }
-    end
   end
 
   # GET /comments/new
-  # GET /comments/new.json
   def new
     @comment = Comment.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @comment }
-    end
   end
 
   # GET /comments/1/edit
@@ -38,46 +22,38 @@ class CommentsController < ApplicationController
   end
 
   # POST /comments
-  # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    @comment.post = @post
 
-    respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
+        redirect_to [@post , @comment]
       else
-        format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        render action: "new"
       end
-    end
   end
 
   # PUT /comments/1
-  # PUT /comments/1.json
   def update
     @comment = Comment.find(params[:id])
 
-    respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to [@post , @comment]
       else
-        format.html { render action: "edit" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        render action: "edit"
       end
-    end
   end
 
   # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
-    end
+    redirect_to post_comments_url(@post)
   end
+
+  private
+  def get_post
+    @post = Post.find(params[:post_id])
+  end
+
 end

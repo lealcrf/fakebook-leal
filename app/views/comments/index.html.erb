@@ -12,14 +12,16 @@
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.body %></td>
-    <td><%= comment.post %></td>
-    <td><%= link_to 'Show', comment %></td>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= comment.post.id %></td>
+    <td><%= link_to 'Show', post_comment_path(comment.post, comment) %></td>
+    <!--ou
+    <td><%= link_to 'Show', [comment.post , comment] %></td>--> <!--Esta é a forma elegante, forma rails de fazer.--> <!--E só existem estas duas opções porque 'Show' é a rota default-->
+    <td><%= link_to 'Edit', edit_post_comment_path(comment.post , comment) %></td> <!--Como é 'Edit', tem que ser neste formato -->
+    <td><%= link_to 'Destroy', [comment.post , comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', new_post_comment_path(@post) %>

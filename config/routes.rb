@@ -1,7 +1,7 @@
 Fakebook::Application.routes.draw do
-  resources :comments
-
-  resources :posts, except: [:edit, :update]
+  resources :posts, except: [:edit, :update] do
+    resources :comments
+  end
   # ou
   # resources : posts, only: [:index, :show, :delete, etc...]
 
