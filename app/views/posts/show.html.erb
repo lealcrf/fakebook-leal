@@ -57,6 +57,8 @@
     <div class="post-comments">
       <div class="list-view ui-comments-list">
         <ul>
+
+          <% @comments.each do |comment| %>
           <li>
             <div class="item-image usuario">
               <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-mclovin.jpg" /></span>
@@ -67,100 +69,23 @@
                   Mc Lovin
                 </div>
                 <div class="user-comment">
-                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
+                  <%= simple_format(comment.body) %>
                 </div>
                 <div class="item-actions">
-                  <span class="timestamp first">30 minutos atrás</span>
+                  <span class="timestamp first"><%= time_ago_in_words(comment.created_at) %></span>
+                  <%= link_to 'Excluir' , [comment.post , comment], method: :delete %>
                 </div>
               </div>
             </div>
           </li>
-          <li>
-            <div class="item-image usuario">
-              <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-rafael.jpg" /></span>
-            </div>
-            <div class="item-info">
-              <div class="item-activity">
-                <div class="user-name">
-                  Rafael Torales
-                </div>
-                <div class="user-comment">
-                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                </div>
-                <div class="item-actions">
-                  <span class="timestamp first">30 minutos atrás</span>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-image usuario">
-              <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-mclovin.jpg" /></span>
-            </div>
-            <div class="item-info">
-              <div class="item-activity">
-                <div class="user-name">
-                  Mc Lovin
-                </div>
-                <div class="user-comment">
-                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                </div>
-                <div class="item-actions">
-                  <span class="timestamp first">30 minutos atrás</span>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-image usuario">
-              <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-rafael.jpg" /></span>
-            </div>
-            <div class="item-info">
-              <div class="item-activity">
-                <div class="user-name">
-                  Rafael Torales
-                </div>
-                <div class="user-comment">
-                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                </div>
-                <div class="item-actions">
-                  <span class="timestamp first">30 minutos atrás</span>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="item-image usuario">
-              <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-rafael.jpg" /></span>
-            </div>
-            <div class="item-info">
-              <div class="item-activity">
-                <div class="user-name">
-                  Rafael Torales
-                </div>
-                <div class="user-comment">
-                  <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
-                </div>
-                <div class="item-actions">
-                  <span class="timestamp first">30 minutos atrás</span>
-                </div>
-              </div>
-            </div>
-          </li>
+          <% end %>
+
         </ul>
       </div>
     </div>
     <!--end .post-comments--><!--begin .comment-form-->
     <div class="comment-form">
-      <form>
-        <div class="item-image usuario">
-          <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-chuck.jpg" /></span>
-        </div>
-        <textarea class="comment-textarea" placeholder="Deixe seu comentário..."></textarea>
-        <div class="form-actions">
-          <button class="button primary small disable">Postar</button>
-        </div>
-      </form>
+      <%= render 'comments/form' %>
     </div>
     <!--end .comment-form-->
   </div>

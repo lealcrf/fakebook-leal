@@ -9,6 +9,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new #retorna um objeto vazio.
   end
 
   # GET /posts/new

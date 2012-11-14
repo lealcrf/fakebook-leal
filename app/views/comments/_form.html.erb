@@ -11,11 +11,14 @@
     </div>
   <% end %>
 
+  <div class="item-image usuario">
+    <span class="item-image-wrap"><img width="35" height="35" src="/assets/user-chuck.jpg" /></span>
+  </div>
+
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body , class: 'comment-textarea' , placeholder: 'Deixe seu comentário...' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Postar', class: 'button primary small disable'  %>
   </div>
 <% end %>
