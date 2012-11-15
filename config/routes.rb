@@ -17,7 +17,11 @@ Fakebook::Application.routes.draw do
 
   get 'praticando' => 'treinando_rotas#metodo'
 
-  root to: 'posts#index'
+  authenticated :user do
+    root to: 'posts#index'
+  end
+
+  root to: 'home#index'
 
   get "home/index"
 

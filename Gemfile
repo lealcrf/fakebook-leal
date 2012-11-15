@@ -11,7 +11,7 @@ gem "fog" # gem para conectar no servidor S3 da amazon.
 gem "devise"
 gem "oily_png"
 gem "friendly_id" # gem para formatar urls quando você não quer que o ID apareça.
-gem "simple_form"
+#gem "simple_form" # tornar o trabalho com formulários mais fácil e agradável com o Rails.
 gem "rufus-scheduler" # gambi para ficar chamando o site no heroku de 15 em 15 minutos e evitar o tempo de load quando o site fica sem acesso por muito tempo.
 group :assets do
   gem "compass", "~> 0.13.alpha.0"

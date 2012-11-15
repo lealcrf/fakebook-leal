@@ -26,7 +26,7 @@
               <li class="item-avatar">
                 <div class="user-avatar small">
                   <div class="user-avatar-inner">
-                    <img width="24" height="24" src="/assets/user-chuck.jpg">
+                    <%= image_tag(current_user.avatar.thumb, width: 24, height: 24) %>
                   </div>
                 </div>
               </li>
@@ -42,23 +42,7 @@
         <% else %>
          
          <div id="user-login">
-           <form>
-             <div class="user-login-email">
-               <label for="field-email">Email</label>
-               <input type="text">
-             </div>
-
-             <div class="user-login-password">
-               <label for="field-password">Senha</label>
-               <input type="password">
-               <a href="#" class="text">Esqueceu sua senha?</a>
-             </div>
-
-             <div class="user-login-actions">
-               <button class="small button">Entrar</button>
-             </div>
-
-           </form>
+           <%= render template: 'devise/sessions/new' %> <!-- 'template' foi usado porque o formulário new não é partial (sem underline na frente no nome do arquivo).  -->
          </div>
          <% end %>
       </div>

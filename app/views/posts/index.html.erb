@@ -21,12 +21,14 @@
           <% @posts.each do |post| %>
           <li>
             <div class="item-image usuario">
-              <span class="item-image-wrap"><img width="40" height="40" src="/assets/user-chuck.jpg" /></span>
+              <span class="item-image-wrap">
+                <%= image_tag(post.user.avatar.thumb, width: 40, height: 40) %>
+              </span>
             </div>
             <div class="item-info">
               <div class="item-activity">
                 <div class="user-name">
-                  Chuck Norris
+                  <%= post.user.name %>
                 </div>
                 <div class="user-comment">
                   <%= simple_format(post.body) %>

@@ -1,0 +1,18 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+	<div class="user-login-email">
+		<%= f.label :email, 'Email' %>
+		<%= f.email_field :email %>
+	</div>
+
+	<div class="user-login-password">
+		<%= f.label :password , 'Senha' %>
+		<%= f.password_field :password %>
+		<%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: 'text' %>
+	</div>
+
+	<div class="user-login-actions">
+	<%= f.submit "Entrar" , class: 'small button' %>
+	</div>
+  
+<% end %>
